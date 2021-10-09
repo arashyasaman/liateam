@@ -2,32 +2,14 @@ import React from "react";
 import { Container, NavLink, Row } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import CartItem from "./cart/CartItem";
+import Cart from "./cart/Cart";
 
 const Header = ({ cart }) => {
   const [open, setOpen] = useState(false);
-  const [total, setTotal] = useState(0);
-
-  const cartRef = useRef();
-
-  useEffect(() => {
-    setTotal(
-      cart.reduce(
-        (acc, current) => acc + Number(current.price) * current.qty,
-        0
-      )
-    );
-    document.addEventListener("mousedown", (event) => {
-      if (!cartRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    });
-  }, [total, cart]);
 
   const toggleOpen = () => {
     setOpen(!open);
   };
-  const isOpen = open ? "active" : "";
 
   return (
     <Container fluid className="header">
@@ -92,8 +74,7 @@ const Header = ({ cart }) => {
               </ul>
             </div>
             <div
-              ref={cartRef}
-              onClick={(e) => {
+              onClick={() => {
                 toggleOpen((open) => !open);
               }}
               className="cart"
@@ -101,30 +82,7 @@ const Header = ({ cart }) => {
               <i className="fas fa-shopping-cart"></i>
               <span className="cartNumber">{cart.length}</span>
 
-              {open && (
-                <div className="cart_dropdown">
-                  <ul>
-                    {cart.length > 0 ? (
-                      cart.map((prod) => <CartItem prod={prod} />)
-                    ) : (
-                      <p className="cart_empty">سبد خرید شما خالی است</p>
-                    )}
-                  </ul>
-                  {cart.length > 0 ? (
-                    <div>
-                      <div className="cart_reduce">
-                        <p>
-                          جمع سفارش‌ها:
-                          <span>{total} تومان</span>
-                        </p>
-                      </div>
-                      <div className="gotocheckout">
-                        <p>ثبت سفارش</p>
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
-              )}
+              {open && <Cart cart={cart} />}
             </div>
           </div>
         </Row>
