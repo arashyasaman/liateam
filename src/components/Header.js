@@ -3,6 +3,7 @@ import { Container, NavLink, Row } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import Cart from "./cart/Cart";
+import MenuMobile from "./mobile/MenuMobile";
 
 const Header = ({ cart }) => {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,7 @@ const Header = ({ cart }) => {
               <div className="logo">
                 <img alt="logo" src="./assets/images/logo.png" />
               </div>
+
               <ul className="menu-item">
                 <li>
                   <NavLink>خانه</NavLink>
@@ -52,6 +54,7 @@ const Header = ({ cart }) => {
         <Row>
           <div className="menu-bottom">
             <div className="menu-product">
+              <MenuMobile />
               <ul>
                 <li>
                   <NavLink href="#">مراقبت پوست</NavLink>
@@ -74,7 +77,8 @@ const Header = ({ cart }) => {
               </ul>
             </div>
             <div
-              onClick={() => {
+              onClick={(e) => {
+                e.stopPropagation();
                 toggleOpen((open) => !open);
               }}
               className="cart"
