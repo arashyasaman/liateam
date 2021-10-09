@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, NavLink, Row } from "react-bootstrap";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
 import Cart from "./cart/Cart";
 import MenuMobile from "./mobile/MenuMobile";
@@ -57,22 +57,22 @@ const Header = ({ cart }) => {
               <MenuMobile />
               <ul>
                 <li>
-                  <NavLink href="#">مراقبت پوست</NavLink>
+                  <NavLink>مراقبت پوست</NavLink>
                 </li>
                 <li>
-                  <NavLink href="#">مراقبت مو</NavLink>
+                  <NavLink>مراقبت مو</NavLink>
                 </li>
                 <li>
-                  <NavLink href="#">مراقبت بدن</NavLink>
+                  <NavLink>مراقبت بدن</NavLink>
                 </li>
                 <li>
-                  <NavLink href="#">آرایشی</NavLink>
+                  <NavLink>آرایشی</NavLink>
                 </li>
                 <li>
-                  <NavLink href="#">پرفروش‌ترین</NavLink>
+                  <NavLink>پرفروش‌ترین</NavLink>
                 </li>
                 <li>
-                  <NavLink href="#">جدیدترین</NavLink>
+                  <NavLink>جدیدترین</NavLink>
                 </li>
               </ul>
             </div>
